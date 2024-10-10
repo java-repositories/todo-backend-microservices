@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "2ed745ec-ba64-4c58-8db6-2a7f817ba860",
+		"name": "Priority-micro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add-priority-micro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"title\": \"Супер высокий\",\r\n        \"color\": \"#fff\",\r\n        \"userId\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/priority/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"priority",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "priorities-by-userid-micro",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "1234"
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/priority/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"priority",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-priority-micro",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"Супер высокий22\",\r\n    \"color\": \"#fff\",\r\n    \"userId\":1234\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/priority/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"priority",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search-priority-micro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"title\": \"выс\",\r\n        \"userId\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/priority/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"priority",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search-priority-by-id-micro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "1",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/priority/id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"priority",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-priority-micro",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/priority/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"priority",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

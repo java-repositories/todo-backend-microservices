@@ -4,4 +4,6 @@ includeBuild 'planner-config'
 includeBuild 'planner-entity'
 includeBuild 'planner-gateway'
 includeBuild 'planner-server'
+includeBuild 'planner-todo'
 
+//include ':planner-config', ':planner-entity', ':planner-gateway', ':planner-server', ':planner-todo'

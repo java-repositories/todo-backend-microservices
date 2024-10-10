@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/planner-entity/planner-entity.main.iml" filepath="$PROJECT_DIR$/.idea/modules/planner-entity/planner-entity.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/planner-microservices.iml" filepath="$PROJECT_DIR$/.idea/modules/planner-microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/planner-todo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/planner-todo.main.iml" />
     </modules>
   </component>
 </project>

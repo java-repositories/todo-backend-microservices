@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "4190d3cd-e1e8-4f0a-a4b9-a78befdf47aa",
+		"name": "Stat-micro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "stat-micro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "123123",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8765/planner-todo/stat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"planner-todo",
+						"stat"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
