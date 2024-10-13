@@ -3,6 +3,7 @@ package com.example.micro.planner.utils.rest.webclient;
 import com.example.micro.planner.entity.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 
 
 @Component
@@ -34,6 +35,20 @@ public class UserWebClientBuilder {
         }
 
         return false;
+
+    }
+
+    // проверка - существует ли пользователь
+    public Flux<User> userExistsAsync(Long userId) {
+
+        Flux<User> fluxUser = WebClient.create(baseUrl)
+                .post()
+                .uri("id")
+                .bodyValue(userId)
+                .retrieve()
+                .bodyToFlux(User.class);
+
+        return fluxUser;
 
     }
 }

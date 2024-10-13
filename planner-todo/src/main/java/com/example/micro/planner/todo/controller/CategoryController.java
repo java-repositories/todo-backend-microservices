@@ -67,9 +67,16 @@ public class CategoryController {
         }
 
         // если такой пользователь существует
+//        if (userRestBuilder.userExists(category.getUserId())) { // вызываем микросервис из другого модуля
+//            return ResponseEntity.ok(categoryService.add(category)); // возвращаем добавленный объект с заполненным ID
+//        }
+
+        // если такой пользователь существует
         if (userWebClientBuilder.userExists(category.getUserId())) { // вызываем микросервис из другого модуля
             return ResponseEntity.ok(categoryService.add(category)); // возвращаем добавленный объект с заполненным ID
         }
+
+//        userWebClientBuilder.userExistsAsync(category.getUserId()).subscribe(user -> System.out.println("user = " + user));
 
         // если пользователя НЕ существует
         return new ResponseEntity("user id=" + category.getUserId() + " not found", HttpStatus.NOT_ACCEPTABLE);
