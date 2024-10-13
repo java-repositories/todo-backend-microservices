@@ -1,6 +1,7 @@
 package com.example.micro.planner.todo.controller;
 
 import com.example.micro.planner.entity.Category;
+import com.example.micro.planner.entity.User;
 import com.example.micro.planner.todo.feign.UserFeignClient;
 import com.example.micro.planner.todo.search.CategorySearchValues;
 import com.example.micro.planner.todo.service.CategoryService;
@@ -87,8 +88,14 @@ public class CategoryController {
 //        userWebClientBuilder.userExistsAsync(category.getUserId()).subscribe(user -> System.out.println("user = " + user));
 
         // если такой пользователь существует
-        if (userFeignClient.findUserById(category.getUserId()) != null) { // вызываем микросервис из другого модуля
-            return ResponseEntity.ok(categoryService.add(category)); // возвращаем добавленный объект с заполненным ID
+        ResponseEntity<User> result =  userFeignClient.findUserById(category.getUserId());
+
+        if (result == null){ // если мс недоступен - вернется null
+            return new ResponseEntity("система пользователей недоступна, попробуйте позже", HttpStatus.NOT_FOUND);
+        }
+
+        if (result.getBody() != null){ // если пользователь не пустой
+            return ResponseEntity.ok(categoryService.add(category));
         }
 
         // если пользователя НЕ существует
