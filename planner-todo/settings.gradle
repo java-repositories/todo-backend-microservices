@@ -1,3 +1,4 @@
 rootProject.name = 'planner-todo'
 
 includeBuild '../planner-entity'
+includeBuild '../planner-utils'
