@@ -11,14 +11,15 @@ import reactor.core.publisher.Flux;
 // спец. класс для вызова микросервисов пользователей с помощью WebClient
 public class UserWebClientBuilder {
 
-    private static final String baseUrl = "http://localhost:8765/planner-users/user/";
+    private static final String baseUrlUser = "http://localhost:8765/planner-users/user/";
+    private static final String baseUrlData = "http://localhost:8765/planner-todo/data/";
 
     // проверка - существует ли пользователь
     public boolean userExists(Long userId) {
 
         try {
 
-            User user = WebClient.create(baseUrl)
+            User user = WebClient.create(baseUrlUser)
                     .post()
                     .uri("id")
                     .bodyValue(userId)
@@ -41,12 +42,26 @@ public class UserWebClientBuilder {
     // проверка - существует ли пользователь
     public Flux<User> userExistsAsync(Long userId) {
 
-        Flux<User> fluxUser = WebClient.create(baseUrl)
+        Flux<User> fluxUser = WebClient.create(baseUrlUser)
                 .post()
                 .uri("id")
                 .bodyValue(userId)
                 .retrieve()
                 .bodyToFlux(User.class);
+
+        return fluxUser;
+
+    }
+
+    // иниц. начальных данных
+    public Flux<Boolean> initUserData(Long userId) {
+
+        Flux<Boolean> fluxUser = WebClient.create(baseUrlData)
+                .post()
+                .uri("init")
+                .bodyValue(userId)
+                .retrieve()
+                .bodyToFlux(Boolean.class);
 
         return fluxUser;
 

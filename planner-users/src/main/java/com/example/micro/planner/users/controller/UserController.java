@@ -3,6 +3,7 @@ package com.example.micro.planner.users.controller;
 import com.example.micro.planner.entity.User;
 import com.example.micro.planner.users.search.UserSearchValues;
 import com.example.micro.planner.users.service.UserService;
+import com.example.micro.planner.utils.rest.webclient.UserWebClientBuilder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,11 +37,14 @@ public class UserController {
     public static final String ID_COLUMN = "id"; // имя столбца id
     private final UserService userService; // сервис для доступа к данным (напрямую к репозиториям не обращаемся)
 
+    // микросервисы для работы с пользователями
+    private UserWebClientBuilder userWebClientBuilder;
 
     // используем автоматическое внедрение экземпляра класса через конструктор
-    // не используем @Autowired ля переменной класса, т.к. "Field injection is not recommended "
-    public UserController(UserService userService) {
+    // не используем @Autowired для переменной класса, т.к. "Field injection is not recommended "
+    public UserController(UserService userService, UserWebClientBuilder userWebClientBuilder) {
         this.userService = userService;
+        this.userWebClientBuilder = userWebClientBuilder;
     }
 
 
@@ -67,7 +71,14 @@ public class UserController {
             return new ResponseEntity("missed param: username", HttpStatus.NOT_ACCEPTABLE);
         }
 
-        return ResponseEntity.ok(userService.add(user)); // возвращаем созданный объект со сгенерированным id
+        user = userService.add(user);
+
+        if (user != null) {
+            userWebClientBuilder.initUserData(user.getId())
+                    .subscribe(result -> System.out.println("user populated" + result));
+        }
+
+        return ResponseEntity.ok(user); // возвращаем созданный объект со сгенерированным id
 
     }
 
@@ -172,7 +183,6 @@ public class UserController {
 
         return ResponseEntity.ok(user);
     }
-
 
 
     // поиск по любым параметрам UserSearchValues
