@@ -145,9 +145,21 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/planner-entity" name="planner-entity">
+                <projects>
+                  <project path="$PROJECT_DIR$/planner-entity" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/planner-utils" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/planner-entity" />
             <option value="$PROJECT_DIR$/planner-utils" />
           </set>
         </option>
