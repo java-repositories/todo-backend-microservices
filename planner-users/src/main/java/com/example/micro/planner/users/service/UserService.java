@@ -46,8 +46,8 @@ public class UserService {
         repository.deleteByEmail(email);
     }
 
-    public User findById(Long id) {
-        return repository.findById(id).get(); // т.к. возвращается Optional - можно получить объект методом get()
+    public Optional<User> findById(Long id) {
+        return repository.findById(id); // т.к. возвращается Optional - можно получить объект методом get()
     }
 
     public Page<User> findByParams(String username, String password, PageRequest paging) {
