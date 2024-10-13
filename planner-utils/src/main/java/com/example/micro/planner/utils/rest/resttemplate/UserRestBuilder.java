@@ -1,4 +1,4 @@
-package com.example.micro.planner.utils.resttemplate;
+package com.example.micro.planner.utils.rest.resttemplate;
 
 import com.example.micro.planner.entity.User;
 import org.springframework.http.HttpEntity;

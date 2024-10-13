@@ -3,7 +3,8 @@ package com.example.micro.planner.todo.controller;
 import com.example.micro.planner.entity.Category;
 import com.example.micro.planner.todo.search.CategorySearchValues;
 import com.example.micro.planner.todo.service.CategoryService;
-import com.example.micro.planner.utils.resttemplate.UserRestBuilder;
+import com.example.micro.planner.utils.rest.resttemplate.UserRestBuilder;
+import com.example.micro.planner.utils.rest.webclient.UserWebClientBuilder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +34,16 @@ public class CategoryController {
     // микросервисы для работы с пользователями
     private UserRestBuilder userRestBuilder;
 
+    // микросервисы для работы с пользователями
+    private UserWebClientBuilder userWebClientBuilder;
+
 
     // используем автоматическое внедрение экземпляра класса через конструктор
     // не используем @Autowired ля переменной класса, т.к. "Field injection is not recommended "
-    public CategoryController(CategoryService categoryService, UserRestBuilder userRestBuilder) {
+    public CategoryController(CategoryService categoryService, UserRestBuilder userRestBuilder, UserWebClientBuilder userWebClientBuilder) {
         this.categoryService = categoryService;
         this.userRestBuilder = userRestBuilder;
+        this.userWebClientBuilder = userWebClientBuilder;
     }
 
     @PostMapping("/all")
@@ -62,7 +67,7 @@ public class CategoryController {
         }
 
         // если такой пользователь существует
-        if (userRestBuilder.userExists(category.getUserId())) { // вызываем микросервис из другого модуля
+        if (userWebClientBuilder.userExists(category.getUserId())) { // вызываем микросервис из другого модуля
             return ResponseEntity.ok(categoryService.add(category)); // возвращаем добавленный объект с заполненным ID
         }
 

@@ -3,7 +3,7 @@ package com.example.micro.planner.todo.controller;
 import com.example.micro.planner.entity.Priority;
 import com.example.micro.planner.todo.search.PrioritySearchValues;
 import com.example.micro.planner.todo.service.PriorityService;
-import com.example.micro.planner.utils.resttemplate.UserRestBuilder;
+import com.example.micro.planner.utils.rest.resttemplate.UserRestBuilder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

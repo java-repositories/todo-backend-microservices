@@ -3,7 +3,7 @@ package com.example.micro.planner.todo.controller;
 import com.example.micro.planner.entity.Task;
 import com.example.micro.planner.todo.search.TaskSearchValues;
 import com.example.micro.planner.todo.service.TaskService;
-import com.example.micro.planner.utils.resttemplate.UserRestBuilder;
+import com.example.micro.planner.utils.rest.resttemplate.UserRestBuilder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
