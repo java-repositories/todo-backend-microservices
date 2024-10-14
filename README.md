@@ -15,3 +15,15 @@
 ├── postman     запросы
 └── repo        файлы конфигурации в репозитории
 ```
+
+## RabbitMQ
+
+### Запуск
+```bash
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10.7-management
+```
+
+### Авторизация
+http://127.0.0.1:15672
+
+guest/guest

@@ -1,6 +1,8 @@
 package com.example.micro.planner.users.controller;
 
 import com.example.micro.planner.entity.User;
+import com.example.micro.planner.users.mq.func.MessageFuncActions;
+import com.example.micro.planner.users.mq.legacy.MessageProducer;
 import com.example.micro.planner.users.search.UserSearchValues;
 import com.example.micro.planner.users.service.UserService;
 import com.example.micro.planner.utils.rest.webclient.UserWebClientBuilder;
@@ -36,15 +38,19 @@ public class UserController {
 
     public static final String ID_COLUMN = "id"; // имя столбца id
     private final UserService userService; // сервис для доступа к данным (напрямую к репозиториям не обращаемся)
+    private MessageProducer messageProducer;
 
     // микросервисы для работы с пользователями
     private UserWebClientBuilder userWebClientBuilder;
 
+    private MessageFuncActions messageFuncActions;
+
     // используем автоматическое внедрение экземпляра класса через конструктор
     // не используем @Autowired для переменной класса, т.к. "Field injection is not recommended "
-    public UserController(UserService userService, UserWebClientBuilder userWebClientBuilder) {
+    public UserController(UserService userService, UserWebClientBuilder userWebClientBuilder, MessageFuncActions messageFuncActions) {
         this.userService = userService;
         this.userWebClientBuilder = userWebClientBuilder;
+        this.messageFuncActions = messageFuncActions;
     }
 
 
@@ -73,9 +79,17 @@ public class UserController {
 
         user = userService.add(user);
 
-        if (user != null) {
-            userWebClientBuilder.initUserData(user.getId())
-                    .subscribe(result -> System.out.println("user populated" + result));
+//        if (user != null) {
+//            userWebClientBuilder.initUserData(user.getId())
+//                    .subscribe(result -> System.out.println("user populated" + result));
+//        }
+
+//        if (user != null) { // если пользователь добавился
+//            messageProducer.initUserData(user.getId()); // отправляем сообщение в канал
+//        }
+
+        if (user != null) { // если пользователь добавился
+            messageFuncActions.sendNewUserMessage(user.getId()); // отправляем сообщение в канал
         }
 
         return ResponseEntity.ok(user); // возвращаем созданный объект со сгенерированным id
