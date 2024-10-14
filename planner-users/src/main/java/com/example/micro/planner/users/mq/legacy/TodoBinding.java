@@ -5,6 +5,7 @@ package com.example.micro.planner.users.mq.legacy;
 
 // интерфейс, который нужен для работы mq
 // здесь создаем нужные нам каналы message broker
+@Deprecated
 public interface TodoBinding { // назавние может быть любым
 
 //    String OUTPUT_CHANNEL = "todoOutputChannel"; // нужен, чтобы на него ссылаться, а не везде использовать антипаттерн magic string

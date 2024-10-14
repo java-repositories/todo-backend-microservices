@@ -7,6 +7,7 @@ package com.example.micro.planner.todo.mq.legacy;
 
 //@Component
 //@EnableBinding(TodoBinding.class)
+@Deprecated
 public class MessageConsumer {
 
 //    private final TestDataService testDataService;

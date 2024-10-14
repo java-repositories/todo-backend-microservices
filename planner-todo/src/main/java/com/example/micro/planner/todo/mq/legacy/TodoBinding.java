@@ -5,6 +5,7 @@ package com.example.micro.planner.todo.mq.legacy;
 
 // название может быть любым
 // описывает каналы для работы с message broker
+@Deprecated
 public interface TodoBinding {
 //    String INPUT_CHANNEL = "todoInputChannel"; // нужен, чтобы на него ссылаться, а не везде использовать антипаттерн magic string
 //
